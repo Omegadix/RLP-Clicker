@@ -146,6 +146,8 @@ public class ScoreManager : MonoBehaviour {
 
 
 
+
+
     /* BOOLEAN pour Milliard ou non */
 
     private static bool IsMillionAtteint()
@@ -185,6 +187,9 @@ public class ScoreManager : MonoBehaviour {
         }
     }
 
+
+
+ 
     /* Méthode de SAVE */
 
     public static void saveData()

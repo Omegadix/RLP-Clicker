@@ -224,6 +224,7 @@
     <Compile Include="Assets\Scripts\MyData.cs" />
     <Compile Include="Assets\Scripts\MyDataManager.cs" />
     <Compile Include="Assets\Scripts\QUIT.cs" />
+    <Compile Include="Assets\Scripts\QUIT_JEU.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
