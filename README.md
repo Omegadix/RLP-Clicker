@@ -1,37 +1,25 @@
-## Welcome to GitHub Pages
+# RLP Clicker
 
-You can use the [editor on GitHub](https://github.com/Omegadix/RLP-Clicker/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+[![N|Solid](https://pbs.twimg.com/profile_images/816696992596426755/8XesltaG.jpg)](https://www.facebook.com/RealLetsPlayTV/)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Toi aussi tu cherches à obtenir de nouveaux abonnés sur ton compte [facebook](https://www.facebook.com/RealLetsPlayTV/), [twitter](https://twitter.com/RLP_TV) ou [twitch](https://www.twitch.tv/rlp_tv/) ? C'est l'application qu'il te faut ! Elle t'apprendra (ou pas) à gagner de nouveaux followers sur les divers médias !
 
-### Markdown
+# Fonctionnalités
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+  - Dans un monde en 3D temps réel (ou pas), vous pouvez gagner des abonnés, juste en martirisant notre pauvre logo
+  - Ou alors déléguer cette tâche aux diverses améliorations !
+  
+  
+  
+# TODO
 
-```markdown
-Syntax highlighted code block
+  - Corriger les sauvegardes
+  - Ajouter de nouvelles fonctionnalités
+  - Bruitages
+  - Améliorer l'IHM
 
-# Header 1
-## Header 2
-### Header 3
+# Remerciements
 
-- Bulleted
-- List
+Merci aux créateurs du jeu [original](http://orteil.dashnet.org/cookieclicker/) de pas me fermer mon projet, il s'agit d'un programme à but non lucratif, servant juste à affirmer mes connaissances acquises dans nos cours d'informatique, cependant, tout don pour la "RLP" (Real Let's Play) servira à améliorer la qualité de nos services.
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Omegadix/RLP-Clicker/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Programme fait sous Unity.
