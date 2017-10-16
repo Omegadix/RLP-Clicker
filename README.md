@@ -1,6 +1,6 @@
 # RLP Clicker
 
-[![N|Solid](https://pbs.twimg.com/profile_images/816696992596426755/8XesltaG.jpg)](https://www.facebook.com/RealLetsPlayTV/)
+![alt text](https://pbs.twimg.com/profile_images/816696992596426755/8XesltaG.jpg)
 
 Toi aussi tu cherches à obtenir de nouveaux abonnés sur ton compte [facebook](https://www.facebook.com/RealLetsPlayTV/), [twitter](https://twitter.com/RLP_TV) ou [twitch](https://www.twitch.tv/rlp_tv/) ? C'est l'application qu'il te faut ! Elle t'apprendra (ou pas) à gagner de nouveaux followers sur les divers médias !
 
