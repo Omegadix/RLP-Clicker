@@ -13,7 +13,7 @@ Toi aussi tu cherches à obtenir de nouveaux abonnés sur ton compte [facebook](
   
 # TODO
 
-  - Corriger les sauvegardes
+  - <del>Corriger les sauvegardes
   - Ajouter de nouvelles fonctionnalités
   - Bruitages
   - Améliorer l'IHM
