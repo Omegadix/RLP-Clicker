@@ -64,7 +64,7 @@ public class ScoreManager : MonoBehaviour {
         }
         else if (abonnés >= 1000000000 && abonnés < 100000000000)
         {
-            ScoreAbo_ScoreAboParSec.text = "subscribers : " + Mathf.Round(abonnésAux * 1000f) / 1000f + " Milliards";
+            ScoreAbo_ScoreAboParSec.text = "Subscribers : " + Mathf.Round(abonnésAux * 1000f) / 1000f + " Milliards";
         }
         else if (abonnés >= 100000000000)
         {
@@ -121,6 +121,10 @@ public class ScoreManager : MonoBehaviour {
     {
         multiplicateurClic *= multi;
     }
+    public static void setmultiplicateurClicPlus(ulong multi)
+    {
+        multiplicateurClic += multi;
+    }
     public static void setAps(ulong apsmodif)
     {
         aps += apsmodif;
@@ -155,7 +159,7 @@ public class ScoreManager : MonoBehaviour {
 
     /* BOOLEAN pour Milliard ou non */
 
-/*    private static bool IsMillionAtteint()
+    private static bool IsMillionAtteint()
     {
         if (abonnés > 1000000 && abonnés < 1000000000)
         {
@@ -179,25 +183,29 @@ public class ScoreManager : MonoBehaviour {
             return false;
         }
     }
-    private static bool IsMoreThanMilliard()
-    {
-        if (abonnés > 1000000000000)
-        {
-            return true;
 
-        }
-        else
-        {
-            return false;
-        }
+
+
+/*
+private static bool IsMoreThanMilliard()
+{
+    if (abonnés > 1000000000000)
+    {
+        return true;
+
     }
+    else
+    {
+        return false;
+    }
+}
 
 
 */
- 
-    /* Méthode de SAVE */
 
-    public static void saveData()
+/* Méthode de SAVE */
+
+public static void saveData()
     {
         print("on save les data : " + Application.persistentDataPath);
         MyData mydata = new MyData();

@@ -30,21 +30,21 @@ public class Ameliorations : MonoBehaviour {
     /* Prix des Bonus */
 
     public static ulong prixMultiClic = 100;
-    public static ulong prixAchatFollower = 25; 
-    public static ulong prixConnexionInternet = 150;
-    public static ulong prixTitrePutaclic = 1800;
-    public static ulong prixVolerContenu = 8000;
-    public static ulong prixFeaturing = 40000;
+    public static ulong prixAchatFollower = 100; 
+    public static ulong prixConnexionInternet = 1100;
+    public static ulong prixTitrePutaclic = 12000;
+    public static ulong prixVolerContenu = 170000;
+    public static ulong prixFeaturing = 3500000;
     public static ulong prixEasterEggSanic = 42;
 
     /* récompense des bonus */
 
-    public static ulong AjoutMultiClic = 2;
-    public static ulong AjoutAchatFollower = 5; 
-    public static ulong AjoutConnexionInternet = 20;
-    public static ulong AjoutTitrePutaclic = 200; 
-    public static ulong AjoutVolerContenu = 800;
-    public static ulong AjoutFeaturing = 1500;
+    public static ulong AjoutMultiClic = 4;
+    public static ulong AjoutAchatFollower = 8; 
+    public static ulong AjoutConnexionInternet = 90;
+    public static ulong AjoutTitrePutaclic = 570; 
+    public static ulong AjoutVolerContenu = 1746;
+    public static ulong AjoutFeaturing = 9620;
     
     /* Nombre d'achat achetés */
 
@@ -126,7 +126,7 @@ public class Ameliorations : MonoBehaviour {
 
         /* Champs textes qui s'actualise */
 
-        textClic.text = "Améliorer souris\nBonus Clic : +" + AjoutMultiClic + "\nPrix : (" + prixMultiClic + ") [" + nombreMultiClic + "]";
+        textClic.text = "Améliorer souris\nBonus Clic : *" + AjoutMultiClic + "\nPrix : (" + prixMultiClic + ") [" + nombreMultiClic + "]";
         textAchatFollower.text = "Acheter Followers\nBonus Subs/s : +" + AjoutAchatFollower + "\n(" + prixAchatFollower + ") [" + nombreAchatFollower + "]";
         textConnexionInternet.text = "Améliorer connexion internet\nBonus Subs/s : +" + AjoutConnexionInternet + "\nPrix : (" + prixConnexionInternet + ") [" + nombreConnexionInternet + "]";
         textTitrePutaclic.text = "Chercher des titres 'Putaclic'\nBonus Subs/s : +" + AjoutTitrePutaclic + "\nPrix : (" + prixTitrePutaclic + ") [" + nombreTitrePutaclic + "]";
@@ -210,7 +210,7 @@ public class Ameliorations : MonoBehaviour {
     void AchatMultiClic()
     {
             ScoreManager.suppAbo(prixMultiClic);
-            prixMultiClic = prixMultiClic * 2;
+            prixMultiClic = prixMultiClic * 10;
             ScoreManager.setmultiplicateurClic(AjoutMultiClic);
             nombreMultiClic += 1;
     }
@@ -222,7 +222,8 @@ public class Ameliorations : MonoBehaviour {
             ScoreManager.suppAbo(prixAchatFollower);
            prixAchatFollower *= 2;
             ScoreManager.setAps(AjoutAchatFollower);
-            nombreAchatFollower += 1;    
+            nombreAchatFollower += 1;
+        AjoutAchatFollower += 2;
     }
 
 
@@ -232,7 +233,9 @@ public class Ameliorations : MonoBehaviour {
             ScoreManager.suppAbo(prixConnexionInternet);
             prixConnexionInternet *= 2;
             ScoreManager.setAps(AjoutConnexionInternet);
+        ScoreManager.setmultiplicateurClicPlus(3);
             nombreConnexionInternet += 1;
+        AjoutConnexionInternet += 15;
     }
 
 
@@ -242,7 +245,9 @@ public class Ameliorations : MonoBehaviour {
             ScoreManager.suppAbo(prixTitrePutaclic);
             prixTitrePutaclic *= 2;
             ScoreManager.setAps(AjoutTitrePutaclic);
-            nombreTitrePutaclic += 1;
+        ScoreManager.setmultiplicateurClicPlus(40);
+        nombreTitrePutaclic += 1;
+        AjoutTitrePutaclic += 98;
     }
 
 
@@ -253,7 +258,9 @@ public class Ameliorations : MonoBehaviour {
             ScoreManager.suppAbo(prixVolerContenu);
             prixVolerContenu *= 2;
             ScoreManager.setAps(AjoutVolerContenu);
-            nombreVolerContenu += 1;
+        ScoreManager.setmultiplicateurClicPlus(520);
+        nombreVolerContenu += 1;
+        AjoutVolerContenu += 168;
     }
 
 
@@ -264,7 +271,9 @@ public class Ameliorations : MonoBehaviour {
             ScoreManager.suppAbo(prixFeaturing);
             prixFeaturing *= 2;
             ScoreManager.setAps(AjoutFeaturing);
-            nombreFeaturing += 1;
+        ScoreManager.setmultiplicateurClicPlus(6100);
+        nombreFeaturing += 1;
+        AjoutFeaturing += 948;
     }
 
 
