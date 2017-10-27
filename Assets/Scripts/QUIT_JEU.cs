@@ -7,12 +7,6 @@ using UnityEngine.UI;
 
 public class QUIT_JEU : MonoBehaviour
 {
-    public void QUIT_GAME_SAV()
-    {
-        ScoreManager.saveData();
-        Application.Quit();
-    }
-
     public void QUIT_GAME()
     {
         Application.Quit();
@@ -26,7 +20,8 @@ public class QUIT_JEU : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            QUIT_GAME_SAV();
+            ScoreManager.saveData();
+            SceneManager.LoadScene("_Main");
         }
     }
 

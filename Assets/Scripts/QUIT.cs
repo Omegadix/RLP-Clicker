@@ -54,10 +54,6 @@ public  void START_GAME()
     {
         Button resetbt1 = Breset.GetComponent<Button>();
         Text relancertxt1 = Trelancer.GetComponent<Text>();
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            QUIT_GAME();
-        }
         if (File.Exists(Application.persistentDataPath + "/" + "RLP.clicker"))
         {
             resetbt1.interactable = true;

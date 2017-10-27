@@ -9,32 +9,56 @@ public class Ameliorations : MonoBehaviour {
 
     /* BOUTONS */
     
-    public Button amelio1;
-    public Button amelio2;
-    public Button amelio3;
+    public Button ClicBonus;
+    public Button achatFollower;
+    public Button connexionInternet;
+    public Button titrePutaclic;
+    public Button volerContenu;
+    public Button featuring;
+    public Button easterEggSanic;
 
     /* Textes */
 
-    public Text text1;
-    public Text text2;
-    public Text text3;
+    public Text textClic;
+    public Text textAchatFollower;
+    public Text textConnexionInternet;
+    public Text textTitrePutaclic;
+    public Text textVolerContenu;
+    public Text textFeaturing;
+    public Text textEasterEggSanic;
 
     /* Prix des Bonus */
 
-    public static ulong PrixBonus1 = 5; // Prix actuel de l'amélio1
-    public static ulong PrixBonus2 = 10; // Prix actuel de l'amélio2
-    public static ulong PrixBonus3 = 42;
+    public static ulong prixMultiClic = 100;
+    public static ulong prixAchatFollower = 25; 
+    public static ulong prixConnexionInternet = 150;
+    public static ulong prixTitrePutaclic = 1800;
+    public static ulong prixVolerContenu = 8000;
+    public static ulong prixFeaturing = 40000;
+    public static ulong prixEasterEggSanic = 42;
 
     /* récompense des bonus */
 
-    public static ulong AjoutBonus1 = 2; // Ajout Bonus 1
-    public static ulong AjoutBonus2 = 2; // Ajout Bonus 1
-    public static ulong AjoutBonus3 = 2; // Ajout Bonus 1
+    public static ulong AjoutMultiClic = 2;
+    public static ulong AjoutAchatFollower = 5; 
+    public static ulong AjoutConnexionInternet = 20;
+    public static ulong AjoutTitrePutaclic = 200; 
+    public static ulong AjoutVolerContenu = 800;
+    public static ulong AjoutFeaturing = 1500;
+    
+    /* Nombre d'achat achetés */
 
-    /* Variables de calcul */ 
+    public static int nombreMultiClic;
+    public static int nombreAchatFollower;
+    public static int nombreConnexionInternet;
+    public static int nombreTitrePutaclic;
+    public static int nombreVolerContenu;
+    public static int nombreFeaturing;
+
+    /* Variables de calcul */
 
     public static ulong multiplicateurActu; // Multiplicateur actuel récupéré avec un GET
-    public float scoreActu; // Valeur auxiière pour le calcul des scores
+    public float scoreActu; // Valeur auxilière pour le calcul des scores
     public ulong SAV_APS;
     public ulong SAV_MultiClic;
     public bool Bonus;
@@ -46,7 +70,6 @@ public class Ameliorations : MonoBehaviour {
 
     /* UNITY */
 
-    public Text txt; // Button amélio 3
     Color baseColor;
 
 /**
@@ -59,45 +82,121 @@ public class Ameliorations : MonoBehaviour {
  * **/
 
     void Start () {
-        Button btn1 = amelio1.GetComponent<Button>();
-        Button btn2 = amelio2.GetComponent<Button>();
-        Button btn3 = amelio3.GetComponent<Button>();
-        btn1.onClick.AddListener(Multi1);
-        btn2.onClick.AddListener(Multi2);
-        btn3.onClick.AddListener(Multi3);
+
+        /* Déclaration des boutons + Fonctions */
+
+        Button btn1Clic = ClicBonus.GetComponent<Button>();
+        btn1Clic.onClick.AddListener(AchatMultiClic);
+
+        Button btn2Follower = achatFollower.GetComponent<Button>();
+        btn2Follower.onClick.AddListener(AchatFollower);
+
+        Button btn3ConnexionInternet = connexionInternet.GetComponent<Button>();
+        btn3ConnexionInternet.onClick.AddListener(AchatConnexionInternet);
+
+        Button btn4TitrePutaclic = titrePutaclic.GetComponent<Button>();
+        btn4TitrePutaclic.onClick.AddListener(AchatTitrePutaclic);
+
+        Button btn5VolerContenu = volerContenu.GetComponent<Button>();
+        btn5VolerContenu.onClick.AddListener(AchatVolerContenu);
+
+        Button btn6Featuring = featuring.GetComponent<Button>();
+        btn6Featuring.onClick.AddListener(AchatFeaturing);
+
+        Button btnBonusEasterEggSanic = easterEggSanic.GetComponent<Button>();
+        btnBonusEasterEggSanic.onClick.AddListener(BonusSanic);
     }
 	
 
 
 	void Update () {
-        Button btn1 = amelio1.GetComponent<Button>();
-        Button btn2 = amelio2.GetComponent<Button>();
-        Button btn3 = amelio3.GetComponent<Button>();
 
         scoreActu = ScoreManager.getScore(); // Permet le calcul pour les achats
-        text1.text = "Améliorer souris\n(" + PrixBonus1 + ')';
-        text2.text = "Acheter Followers\n(" + PrixBonus2 + ')';
-        text3.text = "WOW BABY (?)";
-        if (scoreActu >= PrixBonus1)
+
+
+        /* Redéclaration des boutons (pour éviter les erreurs) */
+        Button btn1Clic = ClicBonus.GetComponent<Button>();
+        Button btn2Follower = achatFollower.GetComponent<Button>();
+        Button btn3ConnexionInternet = connexionInternet.GetComponent<Button>();
+        Button btn4TitrePutaclic = titrePutaclic.GetComponent<Button>();
+        Button btn5VolerContenu = volerContenu.GetComponent<Button>();
+        Button btn6Featuring = featuring.GetComponent<Button>();
+        Button btnBonusEasterEggSanic = easterEggSanic.GetComponent<Button>();
+
+
+        /* Champs textes qui s'actualise */
+
+        textClic.text = "Améliorer souris\nBonus Clic : +" + AjoutMultiClic + "\nPrix : (" + prixMultiClic + ") [" + nombreMultiClic + "]";
+        textAchatFollower.text = "Acheter Followers\nBonus Subs/s : +" + AjoutAchatFollower + "\n(" + prixAchatFollower + ") [" + nombreAchatFollower + "]";
+        textConnexionInternet.text = "Améliorer connexion internet\nBonus Subs/s : +" + AjoutConnexionInternet + "\nPrix : (" + prixConnexionInternet + ") [" + nombreConnexionInternet + "]";
+        textTitrePutaclic.text = "Chercher des titres 'Putaclic'\nBonus Subs/s : +" + AjoutTitrePutaclic + "\nPrix : (" + prixTitrePutaclic + ") [" + nombreTitrePutaclic + "]";
+        textVolerContenu.text = "Voler du contenu\nBonus Subs/s : +" + AjoutVolerContenu + "\nPrix : (" + prixVolerContenu + ") [" + nombreVolerContenu + "]";
+        textFeaturing.text = "Faire un featuring\nBonus Subs/s : +" + AjoutFeaturing + "\nPrix : (" + prixFeaturing + ") [" + nombreFeaturing + "]";
+        textEasterEggSanic.text = "WOW BABY (?)";
+
+        
+        if (scoreActu >= prixMultiClic)
         {
-            btn1.interactable = true;
+            btn1Clic.interactable = true;
         }
-        else btn1.interactable = false;
-        if (scoreActu >= PrixBonus2)
+        else btn1Clic.interactable = false;
+
+
+
+        if (scoreActu >= prixAchatFollower)
         {
-            btn2.interactable = true;
+            btn2Follower.interactable = true;
         }
-        else btn2.interactable = false;
-        if (scoreActu == PrixBonus3)
+        else btn2Follower.interactable = false;
+
+
+
+        if (scoreActu >= prixConnexionInternet)
         {
-            btn3.interactable = true;
-            txt.color = Color.black;
+            btn3ConnexionInternet.interactable = true;
+        }
+        else btn3ConnexionInternet.interactable = false;
+
+
+
+        if (scoreActu >= prixTitrePutaclic)
+        {
+            btn4TitrePutaclic.interactable = true;
+        }
+        else btn4TitrePutaclic.interactable = false;
+
+
+
+
+        if (scoreActu >= prixVolerContenu)
+        {
+            btn5VolerContenu.interactable = true;
+        }
+        else btn5VolerContenu.interactable = false;
+
+
+
+        if (scoreActu >= prixFeaturing)
+        {
+            btn6Featuring.interactable = true;
+        }
+        else btn6Featuring.interactable = false;
+
+
+
+        if (scoreActu == prixEasterEggSanic)
+        {
+            btnBonusEasterEggSanic.interactable = true;
+            textEasterEggSanic.color = Color.black;
         }
         else
         {
-            txt.color = new Color(0, 0, 0, 0);
-            btn3.interactable = false;
+            textEasterEggSanic.color = new Color(0, 0, 0, 0);
+            btnBonusEasterEggSanic.interactable = false;
         }
+
+
+
         if (Bonus)
         {
             Bonus = false;
@@ -105,44 +204,80 @@ public class Ameliorations : MonoBehaviour {
         }
     }
 
-    void Multi1()
+
+
+
+    void AchatMultiClic()
     {
-        if (scoreActu >= PrixBonus1)
-        {
-
-            ScoreManager.suppAbo(PrixBonus1);
-            PrixBonus1 = PrixBonus1 * 2;
-            ScoreManager.setmultiplicateurClic(AjoutBonus1);
-            AjoutBonus1 += 1;
-
-
-        }
-        else if (scoreActu < PrixBonus1) print("PAS ASSEZ");
+            ScoreManager.suppAbo(prixMultiClic);
+            prixMultiClic = prixMultiClic * 2;
+            ScoreManager.setmultiplicateurClic(AjoutMultiClic);
+            nombreMultiClic += 1;
     }
 
-    void Multi2()
-    {
-        if (scoreActu >= PrixBonus2)
-        {
-           
-            ScoreManager.suppAbo(PrixBonus2);
-           PrixBonus2 = PrixBonus2 * 2;
-            ScoreManager.setAps(AjoutBonus2);
-            AjoutBonus2 += 1;
 
-        }
-        else if (scoreActu < PrixBonus2) print("PAS ASSEZ");    
+
+    void AchatFollower()
+    {
+            ScoreManager.suppAbo(prixAchatFollower);
+           prixAchatFollower *= 2;
+            ScoreManager.setAps(AjoutAchatFollower);
+            nombreAchatFollower += 1;    
     }
 
-    void Multi3()
+
+
+    void AchatConnexionInternet()
     {
-        if (scoreActu == PrixBonus3)
+            ScoreManager.suppAbo(prixConnexionInternet);
+            prixConnexionInternet *= 2;
+            ScoreManager.setAps(AjoutConnexionInternet);
+            nombreConnexionInternet += 1;
+    }
+
+
+
+    void AchatTitrePutaclic()
+    {
+            ScoreManager.suppAbo(prixTitrePutaclic);
+            prixTitrePutaclic *= 2;
+            ScoreManager.setAps(AjoutTitrePutaclic);
+            nombreTitrePutaclic += 1;
+    }
+
+
+
+
+    void AchatVolerContenu()
+    {
+            ScoreManager.suppAbo(prixVolerContenu);
+            prixVolerContenu *= 2;
+            ScoreManager.setAps(AjoutVolerContenu);
+            nombreVolerContenu += 1;
+    }
+
+
+
+
+    void AchatFeaturing()
+    {
+            ScoreManager.suppAbo(prixFeaturing);
+            prixFeaturing *= 2;
+            ScoreManager.setAps(AjoutFeaturing);
+            nombreFeaturing += 1;
+    }
+
+
+
+    void BonusSanic()
+    {
+        if (scoreActu == prixEasterEggSanic)
         {
-            ScoreManager.suppAbo(PrixBonus3);
+            ScoreManager.suppAbo(prixEasterEggSanic);
             Bonus = true;
             
         }
-        else if (scoreActu < PrixBonus2)
+        else if (scoreActu < prixAchatFollower)
         {
             print("PAS ASSEZ");
             Bonus = false;

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class ScoreManager : MonoBehaviour {
 
@@ -22,7 +24,8 @@ public class ScoreManager : MonoBehaviour {
 
     /* RECUPERATION BUTTON UNITY */
 
-    public Text text;
+    public TextMeshProUGUI ScoreAbo_ScoreAboParSec;
+    public TextMeshProUGUI MultiplicateurClic;
 
 
     /* Easter Eggs */ 
@@ -32,7 +35,7 @@ public class ScoreManager : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        text = GetComponent<Text>(); // Récupère le texte unity UI
+        ScoreAbo_ScoreAboParSec = GetComponent<TextMeshProUGUI>(); // Récupère le texte unity UI
     }
 	
 	// Update is called once per frame
@@ -50,21 +53,22 @@ public class ScoreManager : MonoBehaviour {
         }
 
         /* Ajout du Million / Milliard au texte + arrondi */
-        if (!IsMillionAtteint() && !IsMilliardAtteint())
+        if (abonnés < 1000000)
         {
-            text.text = "Subscribers : " + abonnés;
+            //text.SetText("Subscribers : {0}", abonnés); // Deux possibilités d'écrire le text avec le mesh
+            ScoreAbo_ScoreAboParSec.text = "Subscribers : " + abonnés;
         }
-        else if (IsMillionAtteint() && !IsMilliardAtteint())
+        else if (abonnés >= 1000000 && abonnés < 1000000000)
         {
-            text.text = "Subscribers : " + Mathf.Round(abonnésAux *1000f) / 1000f + " Millions";
+            ScoreAbo_ScoreAboParSec.text = "Subscribers : " + Mathf.Round(abonnésAux *1000f) / 1000f + " Millions";
         }
-        else if (!IsMillionAtteint() && IsMilliardAtteint())
+        else if (abonnés >= 1000000000 && abonnés < 100000000000)
         {
-            text.text = "subscribers : " + Mathf.Round(abonnésAux * 1000f) / 1000f + " Milliards";
+            ScoreAbo_ScoreAboParSec.text = "subscribers : " + Mathf.Round(abonnésAux * 1000f) / 1000f + " Milliards";
         }
-        else if (IsMoreThanMilliard())
+        else if (abonnés >= 100000000000)
         {
-            text.text = "BRAVO. TU AS GAGNE <3<3";
+            ScoreAbo_ScoreAboParSec.text = "BRAVO. TU AS GAGNE <3<3";
         }
 
         /* Easter Egg SANIC
@@ -73,18 +77,19 @@ public class ScoreManager : MonoBehaviour {
 
         if (bonus == 1)
         {
-            text.text += "\nSubs/s : 2 FAST 4 U";
+            ScoreAbo_ScoreAboParSec.text += "\nSubs/s : 2 FAST 4 U";
         }
 
-        else text.text += "\nSubs/s : " + aps;
+        else ScoreAbo_ScoreAboParSec.text += "\nSubs/s : " + aps;
 
-
+        MultiplicateurClic.text = "Multiplicateur Clic : " + multiplicateurClic;
 
         if (Time.time > Ntimer)
         {
             Ntimer = Time.time + timer;
             abonnés = abonnés + aps;
         }
+
 	}
 
     /* GET & SETTERS */
@@ -114,7 +119,7 @@ public class ScoreManager : MonoBehaviour {
 
     public static void setmultiplicateurClic(ulong multi)
     {
-        multiplicateurClic += multi;
+        multiplicateurClic *= multi;
     }
     public static void setAps(ulong apsmodif)
     {
@@ -150,7 +155,7 @@ public class ScoreManager : MonoBehaviour {
 
     /* BOOLEAN pour Milliard ou non */
 
-    private static bool IsMillionAtteint()
+/*    private static bool IsMillionAtteint()
     {
         if (abonnés > 1000000 && abonnés < 1000000000)
         {
@@ -188,7 +193,7 @@ public class ScoreManager : MonoBehaviour {
     }
 
 
-
+*/
  
     /* Méthode de SAVE */
 
@@ -200,6 +205,31 @@ public class ScoreManager : MonoBehaviour {
         mydata.APSSAV = aps;
         mydata.MultiClicSAV = multiplicateurClic;
 
+    
+        mydata.achatClicMultiSAV = Ameliorations.nombreMultiClic;
+        mydata.achatFollowerSAV = Ameliorations.nombreAchatFollower;
+        mydata.achatConnexionInternetSAV = Ameliorations.nombreConnexionInternet;
+        mydata.achatTitrePutaclicSAV = Ameliorations.nombreTitrePutaclic;
+        mydata.achatVolerContenuSAV = Ameliorations.nombreVolerContenu;
+        mydata.achatFeaturingSAV = Ameliorations.nombreFeaturing;
+
+
+        mydata.AjoutMultiClicSAV = Ameliorations.AjoutMultiClic;
+        mydata.AjoutAchatFollowerSAV = Ameliorations.AjoutAchatFollower;
+        mydata.AjoutConnexionInternetSAV = Ameliorations.AjoutConnexionInternet;
+        mydata.AjoutTitrePutaclicSAV = Ameliorations.AjoutTitrePutaclic;
+        mydata.AjoutVolerContenuSAV = Ameliorations.AjoutVolerContenu;
+        mydata.AjoutFeaturingSAV = Ameliorations.AjoutFeaturing;
+        
+
+        mydata.prixMultiClicSAV = Ameliorations.prixMultiClic;
+        mydata.prixAchatFollowerSAV = Ameliorations.prixAchatFollower;
+        mydata.prixConnexionInternetSAV = Ameliorations.prixConnexionInternet;
+        mydata.prixTitrePutaclicSAV = Ameliorations.prixTitrePutaclic;
+        mydata.prixVolerContenuSAV = Ameliorations.prixVolerContenu;
+        mydata.prixFeaturingSAV = Ameliorations.prixFeaturing;
+
+
         MyDataManager.Save(mydata, "RLP.clicker");
     }
 
@@ -210,5 +240,28 @@ public class ScoreManager : MonoBehaviour {
         abonnés = mydata.abonnésSAV;
         aps = mydata.APSSAV;
         multiplicateurClic = mydata.MultiClicSAV;
+
+        Ameliorations.nombreMultiClic = mydata.achatClicMultiSAV;
+        Ameliorations.nombreAchatFollower = mydata.achatFollowerSAV;
+        Ameliorations.nombreConnexionInternet = mydata.achatConnexionInternetSAV;
+        Ameliorations.nombreTitrePutaclic = mydata.achatTitrePutaclicSAV;
+        Ameliorations.nombreVolerContenu = mydata.achatVolerContenuSAV;
+        Ameliorations.nombreFeaturing = mydata.achatFeaturingSAV;
+
+
+        Ameliorations.AjoutMultiClic = mydata.AjoutMultiClicSAV;
+        Ameliorations.AjoutAchatFollower = mydata.AjoutAchatFollowerSAV;
+        Ameliorations.AjoutConnexionInternet = mydata.AjoutConnexionInternetSAV;
+        Ameliorations.AjoutTitrePutaclic = mydata.AjoutTitrePutaclicSAV;
+        Ameliorations.AjoutVolerContenu = mydata.AjoutVolerContenuSAV;
+        Ameliorations.AjoutFeaturing = mydata.AjoutFeaturingSAV;
+
+
+        Ameliorations.prixMultiClic = mydata.prixMultiClicSAV;
+        Ameliorations.prixAchatFollower = mydata.prixAchatFollowerSAV;
+        Ameliorations.prixConnexionInternet = mydata.prixConnexionInternetSAV;
+        Ameliorations.prixTitrePutaclic = mydata.prixTitrePutaclicSAV;
+        Ameliorations.prixVolerContenu = mydata.prixVolerContenuSAV;
+        Ameliorations.prixFeaturing = mydata.prixFeaturingSAV;
     }
 }
